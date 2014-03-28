@@ -124,7 +124,7 @@
         else {
             fieldView.backgroundColor = [UIColor colorWithRed:52.f/255.f green:170.f/255.f blue:220.f/255.f alpha:1.f];;
         }
-        
+        fieldView.layer.cornerRadius = 6.f;
         [fieldView addSubview:formField];
         [self.scrollView addSubview:fieldView];
         [self.textFields addObject:formField];
@@ -202,15 +202,16 @@
 - (void)didPan:(UIPanGestureRecognizer *)gesture
 {
     UIView *view = gesture.view;
-    CGPoint location = [gesture locationInView:view];
-    location.x = CGRectGetMidX(view.frame);
+    CGPoint location = [gesture locationInView:self.view];
+    location.x = view.frame.origin.x + CGRectGetMidX(self.view.frame);
 
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:
         {
             [self.animator removeAllBehaviors];
             
-            self.snapPoint = CGPointMake(CGRectGetMidX(view.frame), CGRectGetHeight(view.frame)/2.f + 75.f);
+            //snapPoint is the center of the view reference view of the scrollView
+            self.snapPoint = CGPointMake(view.frame.origin.x + CGRectGetMidX(self.view.frame), CGRectGetHeight(self.view.frame)/2.f + 75.f);
             
             self.panAttachmentBehavior = [[UIAttachmentBehavior alloc] initWithItem:view attachedToAnchor:location];
             [self.animator addBehavior:self.panAttachmentBehavior];
