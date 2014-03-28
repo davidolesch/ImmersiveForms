@@ -15,7 +15,6 @@
 		D390DFFF18E240CF00BD6963 /* DOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D390DFF318E240CF00BD6963 /* DOViewController.m */; };
 		D390E00018E240CF00BD6963 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D390DFF418E240CF00BD6963 /* InfoPlist.strings */; };
 		D390E00118E240CF00BD6963 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D390DFF618E240CF00BD6963 /* Images.xcassets */; };
-		D390E00218E240CF00BD6963 /* ImmersiveForms-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D390DFF718E240CF00BD6963 /* ImmersiveForms-Info.plist */; };
 		D390E00318E240CF00BD6963 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D390DFF918E240CF00BD6963 /* main.m */; };
 		D396CB1918E11375008FF757 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D396CB1818E11375008FF757 /* Foundation.framework */; };
 		D396CB1B18E11375008FF757 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D396CB1A18E11375008FF757 /* CoreGraphics.framework */; };
@@ -36,7 +35,6 @@
 		D390DFF318E240CF00BD6963 /* DOViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOViewController.m; sourceTree = "<group>"; };
 		D390DFF518E240CF00BD6963 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D390DFF618E240CF00BD6963 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D390DFF718E240CF00BD6963 /* ImmersiveForms-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ImmersiveForms-Info.plist"; sourceTree = "<group>"; };
 		D390DFF818E240CF00BD6963 /* ImmersiveForms-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImmersiveForms-Prefix.pch"; sourceTree = "<group>"; };
 		D390DFF918E240CF00BD6963 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D396CB1518E11375008FF757 /* ImmersiveForms.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImmersiveForms.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,25 +58,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D35C4B2B18E35EC8007B1D36 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D390DFF618E240CF00BD6963 /* Images.xcassets */,
+				D390DFF418E240CF00BD6963 /* InfoPlist.strings */,
+				D390DFF818E240CF00BD6963 /* ImmersiveForms-Prefix.pch */,
+				D390DFF918E240CF00BD6963 /* main.m */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		D390DFE718E240CF00BD6963 /* ImmersiveForms */ = {
 			isa = PBXGroup;
 			children = (
 				D390DFE818E240CF00BD6963 /* Main.storyboard */,
-				D390DFEA18E240CF00BD6963 /* DOAnimator.h */,
-				D390DFEB18E240CF00BD6963 /* DOAnimator.m */,
 				D390DFEC18E240CF00BD6963 /* DOAppDelegate.h */,
 				D390DFED18E240CF00BD6963 /* DOAppDelegate.m */,
-				D390DFEE18E240CF00BD6963 /* DOFormField.h */,
-				D390DFEF18E240CF00BD6963 /* DOFormField.m */,
-				D390DFF018E240CF00BD6963 /* DOFormViewController.h */,
-				D390DFF118E240CF00BD6963 /* DOFormViewController.m */,
 				D390DFF218E240CF00BD6963 /* DOViewController.h */,
 				D390DFF318E240CF00BD6963 /* DOViewController.m */,
-				D390DFF418E240CF00BD6963 /* InfoPlist.strings */,
-				D390DFF618E240CF00BD6963 /* Images.xcassets */,
-				D390DFF718E240CF00BD6963 /* ImmersiveForms-Info.plist */,
-				D390DFF818E240CF00BD6963 /* ImmersiveForms-Prefix.pch */,
-				D390DFF918E240CF00BD6963 /* main.m */,
+				D390DFF018E240CF00BD6963 /* DOFormViewController.h */,
+				D390DFF118E240CF00BD6963 /* DOFormViewController.m */,
+				D390DFEE18E240CF00BD6963 /* DOFormField.h */,
+				D390DFEF18E240CF00BD6963 /* DOFormField.m */,
+				D390DFEA18E240CF00BD6963 /* DOAnimator.h */,
+				D390DFEB18E240CF00BD6963 /* DOAnimator.m */,
+				D35C4B2B18E35EC8007B1D36 /* Resources */,
 			);
 			path = ImmersiveForms;
 			sourceTree = "<group>";
@@ -164,7 +169,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D390E00218E240CF00BD6963 /* ImmersiveForms-Info.plist in Resources */,
 				D390E00118E240CF00BD6963 /* Images.xcassets in Resources */,
 				D390DFFA18E240CF00BD6963 /* Main.storyboard in Resources */,
 				D390E00018E240CF00BD6963 /* InfoPlist.strings in Resources */,
@@ -243,6 +247,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -274,6 +279,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
