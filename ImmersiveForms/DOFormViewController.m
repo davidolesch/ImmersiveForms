@@ -11,6 +11,7 @@
 @interface DOFormViewController () <UITextFieldDelegate>
 
 @property (strong, nonatomic) NSMutableArray *textFields;
+@property (strong, nonatomic) NSMutableArray *fieldViews;
 @property (strong, nonatomic) NSArray *questions;
 @property (strong, nonatomic) UIScrollView *scrollView;
 
@@ -95,6 +96,7 @@
 - (void)placeTextFields
 {
     self.textFields = [NSMutableArray array];
+    self.fieldViews = [NSMutableArray array];
     CGRect fieldViewFrame = CGRectMake(-CGRectGetWidth(self.scrollView.frame), 75, CGRectGetWidth(self.scrollView.frame), CGRectGetHeight(self.view.bounds));
     for (int k = 0; k < self.questions.count ; k++) {
         fieldViewFrame.origin.x += CGRectGetWidth(self.scrollView.frame);
@@ -128,6 +130,7 @@
         [fieldView addSubview:formField];
         [self.scrollView addSubview:fieldView];
         [self.textFields addObject:formField];
+        [self.fieldViews addObject:fieldView];
     }
 }
 
@@ -165,6 +168,27 @@
 }
 
 #pragma mark UITextFieldDelegate
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    NSUInteger textFieldIndex = [self.textFields indexOfObject:textField];
+    UIView *fieldView = [self.fieldViews objectAtIndex:textFieldIndex];
+    
+    self.snapPoint = CGPointMake(fieldView.frame.origin.x + CGRectGetMidX(self.view.frame), CGRectGetHeight(self.view.frame)/2.f + 75.f);
+    
+    UISnapBehavior *snapBehaviour = [[UISnapBehavior alloc] initWithItem:fieldView snapToPoint:self.snapPoint];
+    snapBehaviour.damping = 0.9f;
+    [self.animator addBehavior:snapBehaviour];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIPushBehavior *pusher = [[UIPushBehavior alloc] initWithItems:@[fieldView] mode:UIPushBehaviorModeInstantaneous];
+        pusher.pushDirection = CGVectorMake(0.0, -200.0);
+        pusher.active = YES;
+        [self.animator addBehavior:pusher];
+    });
+    
+    return YES;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
