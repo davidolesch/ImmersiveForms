@@ -10,8 +10,7 @@
 		D390DFFA18E240CF00BD6963 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D390DFE818E240CF00BD6963 /* Main.storyboard */; };
 		D390DFFB18E240CF00BD6963 /* DOAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = D390DFEB18E240CF00BD6963 /* DOAnimator.m */; };
 		D390DFFC18E240CF00BD6963 /* DOAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D390DFED18E240CF00BD6963 /* DOAppDelegate.m */; };
-		D390DFFD18E240CF00BD6963 /* DOFormField.m in Sources */ = {isa = PBXBuildFile; fileRef = D390DFEF18E240CF00BD6963 /* DOFormField.m */; };
-		D390DFFE18E240CF00BD6963 /* DOFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D390DFF118E240CF00BD6963 /* DOFormViewController.m */; };
+		D390DFFE18E240CF00BD6963 /* DOImmersiveFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D390DFF118E240CF00BD6963 /* DOImmersiveFormViewController.m */; };
 		D390DFFF18E240CF00BD6963 /* DOViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D390DFF318E240CF00BD6963 /* DOViewController.m */; };
 		D390E00018E240CF00BD6963 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D390DFF418E240CF00BD6963 /* InfoPlist.strings */; };
 		D390E00118E240CF00BD6963 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D390DFF618E240CF00BD6963 /* Images.xcassets */; };
@@ -27,10 +26,8 @@
 		D390DFEB18E240CF00BD6963 /* DOAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOAnimator.m; sourceTree = "<group>"; };
 		D390DFEC18E240CF00BD6963 /* DOAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOAppDelegate.h; sourceTree = "<group>"; };
 		D390DFED18E240CF00BD6963 /* DOAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOAppDelegate.m; sourceTree = "<group>"; };
-		D390DFEE18E240CF00BD6963 /* DOFormField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOFormField.h; sourceTree = "<group>"; };
-		D390DFEF18E240CF00BD6963 /* DOFormField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOFormField.m; sourceTree = "<group>"; };
-		D390DFF018E240CF00BD6963 /* DOFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOFormViewController.h; sourceTree = "<group>"; };
-		D390DFF118E240CF00BD6963 /* DOFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOFormViewController.m; sourceTree = "<group>"; };
+		D390DFF018E240CF00BD6963 /* DOImmersiveFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOImmersiveFormViewController.h; sourceTree = "<group>"; };
+		D390DFF118E240CF00BD6963 /* DOImmersiveFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOImmersiveFormViewController.m; sourceTree = "<group>"; };
 		D390DFF218E240CF00BD6963 /* DOViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOViewController.h; sourceTree = "<group>"; };
 		D390DFF318E240CF00BD6963 /* DOViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOViewController.m; sourceTree = "<group>"; };
 		D390DFF518E240CF00BD6963 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -77,10 +74,8 @@
 				D390DFED18E240CF00BD6963 /* DOAppDelegate.m */,
 				D390DFF218E240CF00BD6963 /* DOViewController.h */,
 				D390DFF318E240CF00BD6963 /* DOViewController.m */,
-				D390DFF018E240CF00BD6963 /* DOFormViewController.h */,
-				D390DFF118E240CF00BD6963 /* DOFormViewController.m */,
-				D390DFEE18E240CF00BD6963 /* DOFormField.h */,
-				D390DFEF18E240CF00BD6963 /* DOFormField.m */,
+				D390DFF018E240CF00BD6963 /* DOImmersiveFormViewController.h */,
+				D390DFF118E240CF00BD6963 /* DOImmersiveFormViewController.m */,
 				D390DFEA18E240CF00BD6963 /* DOAnimator.h */,
 				D390DFEB18E240CF00BD6963 /* DOAnimator.m */,
 				D35C4B2B18E35EC8007B1D36 /* Resources */,
@@ -183,11 +178,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D390DFFB18E240CF00BD6963 /* DOAnimator.m in Sources */,
-				D390DFFD18E240CF00BD6963 /* DOFormField.m in Sources */,
 				D390DFFC18E240CF00BD6963 /* DOAppDelegate.m in Sources */,
 				D390DFFF18E240CF00BD6963 /* DOViewController.m in Sources */,
 				D390E00318E240CF00BD6963 /* main.m in Sources */,
-				D390DFFE18E240CF00BD6963 /* DOFormViewController.m in Sources */,
+				D390DFFE18E240CF00BD6963 /* DOImmersiveFormViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

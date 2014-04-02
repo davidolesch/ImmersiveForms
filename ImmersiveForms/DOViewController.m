@@ -7,10 +7,9 @@
 //
 
 #import "DOViewController.h"
-#import "DOFormViewController.h"
-#import "DOAnimator.h"
+#import "DOImmersiveFormViewController.h"
 
-@interface DOViewController () <UIViewControllerTransitioningDelegate>
+@interface DOViewController ()
 
 @end
 
@@ -31,9 +30,15 @@
 #pragma mark IBAction
 
 - (IBAction)touchedAddButton:(id)sender {
-    DOFormViewController *formViewController = [[DOFormViewController alloc] initWithNibName:nil bundle:nil];
-    formViewController.transitioningDelegate = self;
-    formViewController.modalPresentationStyle = UIModalPresentationCustom;
+    NSArray *questions = @[@{@"text":@"Quest name"},
+                           @{@"text":@"Start message"},
+                           @{@"text":@"Number of hints"},
+                           @{@"text":@"Prize message"}];
+    
+    DOImmersiveFormViewController *formViewController = [[DOImmersiveFormViewController alloc] initWithTitle:@"Create a Quest" Questions:questions andCompletionHandler:^(NSArray *answers) {
+        NSLog(@"answers are %@",answers);
+    }];
+    
     [self presentViewController:formViewController animated:YES completion:nil];
 }
 
@@ -49,21 +54,6 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.textLabel.text = [NSString stringWithFormat:@"Quest %li",(long)indexPath.row];
     return cell;
-}
-
-#pragma mark UIViewControllerTransitioningDelegate
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-                                                                  presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source {
-    
-    DOAnimator *animator = [DOAnimator new];
-    animator.presenting = YES;
-    return animator;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [DOAnimator new];
 }
 
 @end

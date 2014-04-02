@@ -7,8 +7,7 @@
 //
 
 #import "DOAnimator.h"
-#import "DOFormViewController.h"
-#import "DOViewController.h"
+#import "DOImmersiveFormViewController.h"
 
 @implementation DOAnimator
 
@@ -21,22 +20,22 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    DOViewController *presentingViewController;
-    DOFormViewController *overlayViewController;
+    UIViewController *presentingViewController;
+    DOImmersiveFormViewController *overlayViewController;
     double initialAlpha;
     double finalAlpha;
     
     if (self.presenting) {
         initialAlpha = 0.f;
         finalAlpha = 0.95f;
-        presentingViewController  = (DOViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-        overlayViewController = (DOFormViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        presentingViewController  = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        overlayViewController = (DOImmersiveFormViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     }
     else {
         initialAlpha = 0.95f;
         finalAlpha = 0.f;
-        overlayViewController  = (DOFormViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-        presentingViewController = (DOViewController *)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        overlayViewController  = (DOImmersiveFormViewController *)[transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        presentingViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     }
     
     UIView *containerView = [transitionContext containerView];

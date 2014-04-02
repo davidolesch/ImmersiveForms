@@ -6,13 +6,16 @@
 //  Copyright (c) 2014 David Olesch. All rights reserved.
 //
 
-#import "DOFormViewController.h"
+#import "DOImmersiveFormViewController.h"
+#import "DOAnimator.h"
 
-@interface DOFormViewController () <UITextFieldDelegate>
+@interface DOImmersiveFormViewController () <UITextFieldDelegate,UIViewControllerTransitioningDelegate>
 
 @property (strong, nonatomic) NSMutableArray *textFields;
 @property (strong, nonatomic) NSMutableArray *fieldViews;
+@property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSArray *questions;
+@property (nonatomic, copy) void (^formCompletionHandler)(NSArray *answers);
 @property (strong, nonatomic) UIScrollView *scrollView;
 
 @property (nonatomic) UIEdgeInsets oldContentInset;
@@ -26,17 +29,18 @@
 
 @end
 
-@implementation DOFormViewController
+@implementation DOImmersiveFormViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithTitle:(NSString *)title Questions:(NSArray *)questions andCompletionHandler:(void (^)(NSArray *answers))formCompletionHandler
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nil bundle:nil];
     if (self) {
-        // Custom initialization
-        self.questions = @[@{@"text":@"Quest name", @"keyboard":[NSNumber numberWithInt:UIKeyboardTypeDefault]},
-                           @{@"text":@"Start message", @"keyboard":[NSNumber numberWithInt:UIKeyboardTypeDefault]},
-                           @{@"text":@"Number of hints", @"keyboard":[NSNumber numberWithInt:UIKeyboardTypeNumbersAndPunctuation]},
-                           @{@"text":@"Prize message", @"keyboard":[NSNumber numberWithInt:UIKeyboardTypeDefault]}];
+        self.title = title;
+        self.questions = questions;
+        self.formCompletionHandler = formCompletionHandler;
+        
+        self.transitioningDelegate = self;
+        self.modalPresentationStyle = UIModalPresentationCustom;
     }
     return self;
 }
@@ -86,7 +90,7 @@
 - (void)placeFormLabelInView:(UIView *)view
 {
     UILabel *formLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 25, 320, 100)];
-    formLabel.text = @"Create a Quest";
+    formLabel.text = self.title;
     formLabel.textColor = [UIColor colorWithRed:43.f/255.f green:43.f/255.f blue:43.f/255.f alpha:1.f];
     formLabel.textAlignment = NSTextAlignmentCenter;
     formLabel.font = [UIFont fontWithName:@"Arial" size:28.0f];
@@ -201,9 +205,11 @@
             }
             else {
                 [self dismissViewControllerAnimated:YES completion:nil];
+                NSMutableArray *answers = [NSMutableArray array];
                 for (int j = 0 ; j < self.questions.count; j++) {
-                    NSLog(@"%@: %@",self.questions[j],[self.textFields[j] text]);
+                    [answers addObject:[self.textFields[j] text]];
                 }
+                self.formCompletionHandler([NSArray arrayWithArray:answers]);
             }
         }
     }
@@ -272,6 +278,21 @@
         default:
             break;
     }
+}
+
+#pragma mark UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+                                                                  presentingController:(UIViewController *)presenting
+                                                                      sourceController:(UIViewController *)source {
+    
+    DOAnimator *animator = [DOAnimator new];
+    animator.presenting = YES;
+    return animator;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return [DOAnimator new];
 }
 
 @end
